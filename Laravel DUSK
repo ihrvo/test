@@ -1,0 +1,30 @@
+Laravel Dusk omogućuje automatizirano testiranje korisničkog sučelja aplikacije. 
+Pomaže u provjeri funkcionalnosti web stranice simuliranjem korisničkih akcija, kao što su klikovi, unos podataka i provjera prikaza elemenata.
+
+Primjer testa: Klik na gumb i provjera preusmjeravanja
+
+php artisan dusk:make ExampleTest
+
+Otvorite novokreirani test u tests/Browser/ExampleTest.php i dodajte:
+
+namespace Tests\Browser;
+
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+
+class ExampleTest extends DuskTestCase
+{
+    public function testButtonClick()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/home')  // Posjeti stranicu /home
+                ->click('@go-to-about')  // Klik na gumb s Dusk atributom
+                ->assertPathIs('/about')  // Provjera URL-a
+                ->assertSee('About Us'); // Provjera teksta na stranici
+        });
+    }
+}
+
+Dodajte dusk atribut u HTML element (blade):  <a href="/about" dusk="go-to-about">Go to About</a>
+
+Pokrenite test: php artisan dusk
