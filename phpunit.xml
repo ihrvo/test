@@ -1,3 +1,9 @@
+- konfiguracijska datoteka za PHPUnit -> alat za testiranje u PHP-u
+- u Laravelu se po defaultu nalazi u novoj instalaciji
+- https://laravel.com/docs/11.x/testing
+
+# DEFAULT LARAVEL phpunit.xml 
+
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
@@ -35,6 +41,7 @@
     </php>
 </phpunit>
 
+# Osnovni phpunit.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="vendor/autoload.php"
          colors="true">
@@ -55,5 +62,3 @@
         <env name="APP_ENV" value="testing"/>
     </php>
 </phpunit>
-
-https://laravel.com/docs/11.x/testing
