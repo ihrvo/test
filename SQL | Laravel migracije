@@ -1,5 +1,5 @@
 SQL migracije 
-- skripte koje upravljaju promjenama u strukturi baze podataka, poput kreiranja tablica, izmjena stupaca ili dodavanja indeksa.
+- skripte koje upravljaju promjenama sheme baze podataka, poput kreiranja tablica, izmjena stupaca ili dodavanja indeksa.
 
 Laravel migracije 
-- PHP skripte koje upravljanju promjenama u strukturi baze podataka, poput kreiranja tablica, izmjena stupaca i dodavanja indeksa, koristeći Artisan naredbe.
+- PHP skripte koje upravljanju promjenama sheme baze podataka, poput kreiranja tablica, izmjena stupaca i dodavanja indeksa, koristeći Artisan naredbe.
