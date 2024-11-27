@@ -1,4 +1,5 @@
-Continuous Integration (CI) je praksa u softverskom razvoju koja uključuje čestu integraciju koda u zajednički repozitorij, obično nekoliko puta dnevno. Cilj CI-a je rano otkrivanje problema i osiguranje stabilnosti projekta.
+Continuous Integration (CI) je praksa u softverskom razvoju koja uključuje čestu integraciju koda u zajednički repozitorij, obično nekoliko puta dnevno.
+Cilj CI-a je rano otkrivanje problema i osiguranje stabilnosti projekta.
 
 - Continuous Integration (CI)
 - Continuous Delivery (CD)
