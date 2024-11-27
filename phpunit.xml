@@ -34,3 +34,5 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
     </php>
 </phpunit>
+
+https://laravel.com/docs/11.x/testing
