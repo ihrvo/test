@@ -1,0 +1,27 @@
+Continuous Integration (CI) je praksa u softverskom razvoju koja uključuje čestu integraciju koda u zajednički repozitorij, obično nekoliko puta dnevno. Cilj CI-a je rano otkrivanje problema i osiguranje stabilnosti projekta.
+
+- Continuous Integration (CI)
+- Continuous Delivery (CD)
+- CI/CD -> Kombinacija CI i CD-a često se naziva CI/CD pipeline.
+
+Continuous Integration (CI):
+- Česta integracija koda u zajednički repozitorij.
+- Automatsko testiranje za otkrivanje grešaka.
+- Brza povratna informacija o kvaliteti koda.
+- Cilj: stabilan i kvalitetan kod.
+
+Continuous Delivery (CD):
+- Automatizirano slanje koda u staging/produkciju.
+- Brzo i sigurno izdavanje novih verzija.
+- Kod je uvijek spreman za produkciju.
+- Cilj: brža implementacija bez grešaka.
+
+CI/CD pipeline:
+- Pisanje koda.
+- Automatska integracija i testiranje (CI).
+- Automatska isporuka i implementacija (CD).
+
+Prednosti CI/CD:
+- Brže izdavanje značajki.
+- Manje grešaka u produkciji.
+- Učinkovitiji tim i brža povratna informacija.
