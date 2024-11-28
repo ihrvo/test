@@ -1,0 +1,43 @@
+DROP DATABASE IF EXISTS banka;
+CREATE DATABASE IF NOT EXISTS banka;
+
+use banka;
+
+DROP TABLE IF EXISTS racuni;
+CREATE TABLE IF NOT EXISTS racuni (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ime VARCHAR(100) NOT NULL,
+    iban VARCHAR(100) UNIQUE NOT NULL,
+    stanje DECIMAL(10,2) DEFAULT 0.00
+);
+
+INSERT INTO racuni (ime, iban, stanje)
+VALUES 
+('Ivan', 'HR123456789', '100'),
+('Pero', 'HR987654321', '200');
+
+DELIMITER //
+
+    CREATE PROCEDURE prebaci_iznos(
+        in iban_posiljatelja VARCHAR(100),
+        in iban_primatelja VARCHAR(100),
+        in iznos_transfera DECIMAL(10,2)
+    )
+
+    BEGIN
+
+    DECLARE dovoljan_iznos INT DEFAULT 0;
+    START TRANSACTION;
+        SELECT COUNT(*) INTO dovoljan_iznos FROM racuni WHERE iban = iban_posiljatelja AND stanje >= iznos_transfera;
+
+        IF dovoljan_iznos = 1 THEN
+            UPDATE racuni SET stanje = stanje - iznos_transfera WHERE iban = iban_posiljatelja;
+            UPDATE racuni SET stanje = stanje + iznos_transfera WHERE iban = iban_primatelja;
+            COMMIT;
+        ELSE
+            ROLLBACK;
+        END IF;
+END  //
+DELIMITER ;
+
+CALL prebaci_iznos('HR123456789', 'HR987654321', 50.00);
