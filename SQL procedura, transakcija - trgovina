@@ -1,0 +1,58 @@
+DROP DATABASE IF EXISTS trgovina;
+CREATE DATABASE IF NOT EXISTS trgovina;
+
+use trgovina;
+
+DROP TABLE IF EXISTS proizvodi;
+CREATE TABLE IF NOT EXISTS proizvodi (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    naziv VARCHAR(255) NOT NULL,
+    kolicina INT UNSIGNED DEFAULT 0,
+    cijena DECIMAL(10, 2)
+);
+
+INSERT INTO proizvodi (naziv, kolicina, cijena)
+VALUES 
+('kruh', '10', 2),
+('mlijeko', '5', 1),
+('voda', '15', 0.5);
+
+DELIMITER //
+
+    CREATE PROCEDURE azuriraj_stanje(
+        in naziv_proizvoda VARCHAR(255),
+        in prodana_kolicina INT
+    )
+
+    BEGIN
+
+    DECLARE trenutna_kolicina INT DEFAULT 0;
+    START TRANSACTION;
+        SELECT kolicina INTO trenutna_kolicina FROM proizvodi WHERE naziv = naziv_proizvoda;
+
+        IF trenutna_kolicina >= prodana_kolicina THEN
+            UPDATE proizvodi SET kolicina = trenutna_kolicina - prodana_kolicina WHERE naziv = naziv_proizvoda;
+            COMMIT;
+        ELSE
+            ROLLBACK;
+        END IF;
+END  //
+DELIMITER ;
+
+CALL azuriraj_stanje('kruh', 1);
+
+-- FUNKCIJA
+
+DELIMITER //
+CREATE FUNCTION trenutno_stanje(
+    naziv_proizvoda VARCHAR(255)
+) RETURNS VARCHAR(255)
+DETERMINISTIC
+BEGIN
+    DECLARE trenutno_stanje INT;
+    SELECT kolicina INTO trenutno_stanje FROM proizvodi WHERE naziv = naziv_proizvoda;
+    RETURN trenutno_stanje;
+END //
+DELIMITER ;
+
+SELECT trenutno_stanje('kruh');
