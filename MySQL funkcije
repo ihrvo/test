@@ -1,0 +1,44 @@
+Agregatne funkcije
+
+COUNT(): Broji broj redova u određenom stupcu.
+SUM(): Zbraja vrijednosti u stupcu.
+AVG(): Izračunava prosječnu vrijednost stupca.
+MAX(): Pronalazi najveću vrijednost u stupcu.
+MIN(): Pronalazi najmanju vrijednost u stupcu.
+
+Kontrole toka
+
+IF(): Izvodi uvjetno ispitivanje i vraća jednu od dviju vrijednosti.
+CASE: Uspoređuje izraz s nizom mogućih vrijednosti i vraća rezultat.
+COALESCE(): Vraća prvu non-null vrijednost u listi argumenata.
+
+Funkcije za usporedbu
+
+= (Equal): Provjerava jesu li vrijednosti jednake.
+<> (Not equal): Provjerava jesu li vrijednosti različite.
+LIKE: Uspoređuje string s uzorkom.
+BETWEEN: Provjerava nalazi li se vrijednost unutar određenog raspona.
+
+Funkcije za datum
+
+NOW(): Vraća trenutni datum i vrijeme.
+CURDATE(): Vraća trenutni datum.
+DATEDIFF(): Izračunava razliku između dva datuma.
+DATE_ADD(): Dodaje određeni interval vremena na datum.
+DAY(): Izdvaja dan iz datuma.
+
+Funkcije za nizove
+
+CONCAT(): Spaja dva ili više stringova u jedan.
+LENGTH(): Vraća duljinu stringa u bajtovima.
+SUBSTRING(): Izdvaja dio stringa.
+REPLACE(): Zamjenjuje sve pojave određenog stringa drugim stringom.
+UPPER(): Pretvara sva slova u stringu u velika slova.
+
+Matematičke funkcije
+
+ABS(): Vraća apsolutnu vrijednost broja.
+CEIL() ili CEILING(): Zaokružuje broj na najbliži veći cijeli broj.
+FLOOR(): Zaokružuje broj na najbliži manji cijeli broj.
+ROUND(): Zaokružuje broj na najbliži cijeli broj.
+SQRT(): Izračunava kvadratni korijen broja.
