@@ -41,3 +41,19 @@ END  //
 DELIMITER ;
 
 CALL prebaci_iznos('HR123456789', 'HR987654321', 50.00);
+
+-- FUNKCIJA
+
+DELIMITER //
+CREATE FUNCTION trenutno_stanje(
+    trazeni_iban VARCHAR(100)
+) RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE iznos_na_racunu DECIMAL(10,2);
+    SELECT stanje INTO iznos_na_racunu FROM racuni WHERE iban = trazeni_iban;
+    RETURN iznos_na_racunu;
+END //
+DELIMITER ;
+
+SELECT trenutno_stanje('HR123456789');
