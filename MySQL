@@ -1,0 +1,11 @@
+GRANT
+Naredba GRANT se koristi za dodjelu prava korisnicima. 
+
+GRANT privilege_type ON object TO user [WITH GRANT OPTION];
+GRANT SELECT, INSERT ON database.table TO 'username'@'localhost';
+
+REVOKE
+Naredba REVOKE se koristi za uklanjanje prava koja su prethodno dodijeljena korisnicima.
+
+REVOKE privilege_type ON object FROM user;
+REVOKE INSERT ON database.table FROM 'username'@'localhost';
