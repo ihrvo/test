@@ -1,4 +1,4 @@
-# 1. php artisan make:controller AnimalController --api
+php artisan make:controller NameController --api 
 
 -- ako kreiramo sa --api imat ćemo:
 
@@ -13,5 +13,137 @@ public function destroy($id) {}
 public function create() {}
 public function edit($id) {}
 
+1. php artisan make:model Animal --all
+
+2. u migraciju:
+
+ Schema::create('animals', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->timestamps();
+    });
+
+3. u model:
+
+protected $fillable = ['name', 'species'];
+
+4. u kontroler
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Animal;
+
+class AnimalController extends Controller
+{
+    public function getAnimal($name)
+    {
+        $animal = Animal::where('name', $name)->first();
+
+        if (!$animal) {
+            return response()->json(['message' => 'Nema takve životinje'], 404);
+        }
+
+        return response()->json($animal);
+    }
+
+    public function storeAnimal(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $animal = Animal::create($validated);
+
+        return response()->json(['message' => 'Nova životinja spremljena', 'animal' => $animal], 201);
+    }
+}
+
+5. u rute
+
+Route::get('/animals/{name}', [AnimalController::class, 'getAnimal']);
+Route::post('/animals', [AnimalController::class, 'storeAnimal']);
+
+6. Kreirajte i definirajte resursni kontroler za automobile. Kreirajte kontroler koji definira sve
+rute koje dolaze s resursnim kontrolerom
+
+php artisan make:controller CarController --resource
+
+7. Unutar store metode postojećeg kontrolera napišite funkciju koja obrađuje POST HTTP
+zahtjev. Funkcija treba prihvatiti zahtjev koji sadrži polje za “naziv”. Provjerite jesu li sva polja
+ispunjena i vratite odgovarajuću poruku u JSON formatu. Ako su sva polja ispunjena,
+vratite statusni kod 200 i poruku ""Zahtjev uspješan"". Ako bilo koje polje nedostaje,
+vratite statusni kod 400 i poruku ""Nedostaju podaci""."
+
+use Illuminate\Validation\ValidationException;
+public function store(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'naziv' => 'required|string|max:255'
+            ]);
+
+            return response()->json([
+                'message' => 'Zahtjev uspješan'
+            ], 200);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Nedostaju podaci',
+                'errors' => $e->errors()
+            ], 400);
+        }
+    }
+
+8. Kreirajte middleware u Laravelu koji provjerava je li korisnik autentificiran prije pristupa
+proizvoljnoj ruti. Provjera pristupa se radi tako da se u Headeru zahtjeva mora poslati proizvoljan token.
+Ako korisnik nije autentificiran, middleware treba preusmjeriti korisnika na početnu
+stranicu. 
+
+php artisan make:middleware ProvjeriToken
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class ProvjeriToken
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        $token = $request->header('Authorization');
+
+        if ($token !== 'my-secret-token') {
+            return redirect('/');
+        }
+        return $next($request);
+    }
+}
+
+9. Dodajte svoj middleware direktno u routes/web.php ili routes/api.php:
+
+use App\Http\Middleware\ProvjeriToken;
+
+Route::middleware([ProvjeriToken::class])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return 'Dobrodošli na admin dashboard!';
+    });
+
+    Route::get('/admin/settings', function () {
+        return 'Postavke administratora.';
+    });
+});
+
+10. Globalni Middleware
+Ako želite da vaš middleware bude globalan (primijenjen na sve zahtjeve), možete ga dodati u bootstrap/app.php prilikom pokretanja aplikacije:
+
+$app->middleware([
+    App\Http\Middleware\ProvjeriToken::class,
+]);
 
 
