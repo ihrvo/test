@@ -1,0 +1,20 @@
+<?php
+// Objektno orijentirani pristup
+class Kalkulator {
+    // Metoda za zbrajanje
+    public function zbroji($a, $b) {
+        return $a + $b;
+    }
+}
+
+// Stvaranje instance klase
+$kalkulator = new Kalkulator();
+
+// Definiranje brojeva
+$broj1 = 5;
+$broj2 = 3;
+
+// Pozivanje metode zbroji
+$rezultat = $kalkulator->zbroji($broj1, $broj2);
+echo "Zbroj je: " . $rezultat;
+?>
