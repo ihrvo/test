@@ -59,10 +59,15 @@ class AnimalController extends Controller
     }
 }
 
-5. u rute
+5. u rute (ovo u biti na kraju nakon kreiranja middleware-a)
 
-Route::get('/animals/{name}', [AnimalController::class, 'getAnimal']);
-Route::post('/animals', [AnimalController::class, 'storeAnimal']);
+Route::middleware([ProvjeriToken::class])->name('auth:admin')->group(function () {
+    Route::get('/animals/{name}', [AnimalController::class, 'getAnimal']);
+    Route::post('/animals', [AnimalController::class, 'storeAnimal']);
+    Route::get('/admin/dashboard', function () {
+        return 'Dobrodošli na admin dashboard!';
+    });
+});
 
 6. Kreirajte i definirajte resursni kontroler za automobile. Kreirajte kontroler koji definira sve
 rute koje dolaze s resursnim kontrolerom
@@ -145,5 +150,78 @@ Ako želite da vaš middleware bude globalan (primijenjen na sve zahtjeve), mož
 $app->middleware([
     App\Http\Middleware\ProvjeriToken::class,
 ]);
+
+11. Kreirajte feature test koji provjerava da se za proizvoljnu rutu kontrolera dobije 200
+(primjer za rutu [GET] /animals). U sklopu testa treba napraviti User factory koji će
+kreirati korisnika koji će napraviti zahtjev.
+
+php artisan make:test RoutTest
+
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+use App\Models\User;
+
+
+class RouteTest extends TestCase
+{
+    /**
+     * A basic feature test example.
+     */
+    public function test_example(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->withHeaders([
+            'Authorization' => '1606',
+        ])->get('/zivotinje/pas');
+
+        $response->assertStatus(200);
+    }
+}
+
+php artisan test --filter=RouteTest
+
+12. u welcome blade napravljena forma koja će dodavati životinju u tablicu te skripta koja dodaje token u header:
+
+  <p>Dodaj životinju:</p>
+  <form action="/zivotinje" method="POST" id="animal-form">
+      @csrf
+      <label for="name">Životinja</label>
+      <input type="text" name="name" />
+      <input type="submit" value="Pošalji" id="submit-button">
+  </form>
+
+<script>
+document.getElementById('submit-button').addEventListener('click', function () {
+    const form = document.getElementById('animal-form');
+    const formData = new FormData(form);
+
+    fetch('/zivotinje', {
+        method: 'POST',
+        headers: {
+            'Authorization': '1606',
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+        },
+        body: formData,
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Greška: ' + response.status);
+        }
+    })
+    .then(data => {
+        console.log('Uspješno:', data);
+    })
+    .catch(error => {
+        console.error('Greška:', error);
+    });
+});
+</script>
 
 
