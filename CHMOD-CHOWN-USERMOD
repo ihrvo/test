@@ -46,3 +46,33 @@ chmod 754 ime_datoteke
 Vlasnik (7): čitanje (4) + pisanje (2) + izvođenje (1) = 7
 Grupa (5): čitanje (4) + izvođenje (1) = 5
 Ostali (4): samo čitanje (4)
+
+chown (change owner) naredba u Linuxu koristi se za mijenjanje vlasništva nad datotekama i direktorijima. 
+Omogućuje korisniku da promijeni vlasnika i/ili grupu datoteke ili direktorija. Evo kako se koristi:
+
+chown [options] user[:group] file
+
+-- Promjena vlasnika datoteke
+chown novi_vlasnik ime_datoteke - Mijenja vlasnika datoteke na novi_vlasnik.
+
+-- Promjena vlasnika i grupe
+chown novi_vlasnik:nova_grupa ime_datoteke - Mijenja vlasnika i grupu datoteke na novi_vlasnik i nova_grupa.
+
+-- Promjena grupe
+chown :nova_grupa ime_datoteke - Mijenja samo grupu datoteke na nova_grupa.
+
+-- Rekurzivna promjena
+chown -R novi_vlasnik direktorij - Rekurzivno mijenja vlasnika svih datoteka i poddirektorija unutar direktorija direktorij.
+
+Opcije
+-R - Rekurzivno mijenja vlasništvo za direktorije i njihove sadržaje.
+-c - Prikaže informaciju samo kad dođe do promjene.
+--from=stari_vlasnik:stara_grupa - Mijenja vlasništvo samo ako je trenutni vlasnik i grupa odgovaraju navedenom.
+
+DODAVANJE korisnika u grupu:
+
+sudo usermod -aG ime_grupe ime_korisnika
+
+-aG (-a je skraćeno od append, a -G specificira grupu): 
+Ova opcija dodaje korisnika u grupu bez uklanjanja iz ostalih grupa kojima pripada.
+Ako ne koristite -a, korisnik će biti uklonjen iz svih ostalih grupa osim one koju specificirate
