@@ -1,0 +1,12 @@
+composer global require laravel/installer
+-- ako laravel naredbe ne rade:
+
+nano ~/.bashrc
+
+-- dodati na kraj datoteke:
+
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+Spremite datoteku (Ctrl + O, Enter, Ctrl + X) i učitajte promjene:
+
+source ~/.bashrc
