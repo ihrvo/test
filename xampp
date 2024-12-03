@@ -11,5 +11,10 @@ add this PHP to your path -> označiti
 composer global require laravel/installer
 laravel new example-app
 
-5. instalacija node.js 
+5. instalacija node.js
+
 6. Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned --> inače node.js ne radi u VSC terminalu
+
+7. instalacija git-a sa https://git-scm.com/
+
+8. da bi se koristio mysql u cmd/terminalu potrebno je dodati C:\xampp\mysql\bin path u system path varijable
