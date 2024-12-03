@@ -1,0 +1,48 @@
+chmod (change mode) naredba u Linuxu koristi se za promjenu prava pristupa datotekama i direktorijima.
+
+chmod ugo+rwx ime_datoteke;
+
+chmod 755 datoteka.txt - Postavlja dopuštenje tako da vlasnik može čitati, pisati i izvoditi datoteku, dok grupa i ostali mogu samo čitati i izvoditi.
+chmod u+x datoteka.txt - Dodaje pravo izvršavanja (x) za vlasnika (u za user).
+chmod g-w datoteka.txt - Oduzima pravo pisanja (w) za grupu (g za group).
+chmod -R 644 direktorij - Rekurzivno postavlja dopuštenja na 644 (vlasnik može čitati i pisati; grupa i ostali mogu samo čitati) za sve datoteke unutar direktorija.
+
+Opcije
+-R - Rekurzivno mijenja dopuštenja za direktorije i njihove sadržaje.
+-v - Prikaže detaljnu informaciju o svakoj promjeni.
+--reference=datoteka - Postavlja dopuštenja na ista kao kod referentne datoteke.
+
+Dopuštenja
+Dopuštenja se mogu izraziti brojevima (oktalno) ili simbolima:
+
+Brojčano: 
+7 (čitanje + pisanje + izvođenje), 
+6 (čitanje + pisanje), 
+5 (čitanje + izvođenje), 
+4 (čitanje), 3 (pisanje + izvođenje), 
+2 (pisanje), 1 (izvođenje), 
+0 (nema dopuštenja).
+
+Simbolično: r (čitanje), 
+w (pisanje), 
+x (izvođenje), 
+u (vlasnik), 
+g (grupa), 
+o (ostali), 
+a (svi).
+
+chmod XXX ime_datoteke;
+
+Prvi X - Odnosi se na vlasnika datoteke (user).
+Drugi X - Odnosi se na grupu kojoj vlasnik pripada (group).
+Treći X - Odnosi se na sve ostale korisnike (others).
+Svaki broj se izračunava dodavanjem vrijednosti za sljedeća dopuštenja:
+
+4 za čitanje (r),
+2 za pisanje (w),
+1 za izvođenje (x).
+Primjeri:
+chmod 754 ime_datoteke
+Vlasnik (7): čitanje (4) + pisanje (2) + izvođenje (1) = 7
+Grupa (5): čitanje (4) + izvođenje (1) = 5
+Ostali (4): samo čitanje (4)
