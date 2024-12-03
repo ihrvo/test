@@ -1,0 +1,17 @@
+# 1. php artisan make:controller AnimalController --api
+
+-- ako kreiramo sa --api imat ćemo:
+
+public function index() {}
+public function store(Request $request) {}
+public function show($id) {}
+public function update(Request $request, $id) {}
+public function destroy($id) {}
+
+-- ako kreiramo sa --resource imat ćemo dodatno i :
+
+public function create() {}
+public function edit($id) {}
+
+
+
