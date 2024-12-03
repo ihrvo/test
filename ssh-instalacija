@@ -1,0 +1,36 @@
+-- Ažurirajte popis paketa:
+
+sudo apt update
+
+-- Instalirajte SSH server:
+
+sudo apt install openssh-server
+
+-- Provjerite da li je SSH server pokrenut:
+
+sudo systemctl status ssh
+
+-- Ako je potrebno, omogućite SSH da se automatski pokreće pri pokretanju:
+
+sudo systemctl enable ssh
+
+-- KOPIRANJE datoteke na server
+
+scp C:\xampp\htdocs\test2\setup.sh hrvoje@172.24.239.32:/home/hrvoje
+
+-- Shebang linija: Provjerite da je prva linija skripte (#!/bin/bash) ispravna.
+-- Ako /bin/bash nije ispravna putanja do Bash interpretera na vašem sustavu, skripta se neće moći izvršiti. 
+-- Možete provjeriti postoji li Bash na ovoj lokaciji pomoću naredbe:
+
+which bash
+
+-- ispisuje npr. /usr/bin/bash
+-- to je potrebno promijeniti u prvoj liniji setup.sh
+
+-- Provjerite i očistite skriptu od Windows znakova kraja linije: 
+-- Windows koristi CR LF kao znakove kraja linije, dok Linux koristi samo LF. 
+-- Ako je vaša skripta originalno napisana ili modificirana u Windows okruženju, može sadržavati ove dodatne CR znakove. 
+-- Možete koristiti alat poput dos2unix da konvertirate kraj linije znakove:
+
+sudo apt install dos2unix  # Prvo instalirajte dos2unix ako već nije instaliran
+dos2unix setup.sh
