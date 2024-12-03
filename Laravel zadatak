@@ -61,9 +61,20 @@ class AnimalController extends Controller
 
 5. u rute (ovo u biti na kraju nakon kreiranja middleware-a)
 
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\CarController;
+use App\Http\Middleware\ProvjeriToken;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::middleware([ProvjeriToken::class])->name('auth:admin')->group(function () {
-    Route::get('/animals/{name}', [AnimalController::class, 'getAnimal']);
-    Route::post('/animals', [AnimalController::class, 'storeAnimal']);
+    Route::get('/zivotinje/{name}', [AnimalController::class, 'getAnimal']);
+    Route::post('/zivotinje', [AnimalController::class, 'storeAnimal']);
+    Route::resource('cars', CarController::class);
     Route::get('/admin/dashboard', function () {
         return 'Dobrodošli na admin dashboard!';
     });
