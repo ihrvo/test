@@ -1,0 +1,27 @@
+mkdir zadatak
+cd zadatak
+touch app.php
+
+-- dodamo echo liniju u app.php
+
+git init
+git config --global user.name "Hrvoje Ivančić"
+git config --global user.email "ihrvoje@gmail.com"
+git add app.php
+git commit -m "My first commit"
+git branch feature-remove-echo
+git switch feature-remove-echo
+
+-- dodamo 2. echo liniju u file
+
+git add app.php
+git commit -m "My second commit"
+
+git switch master
+git merge feature-remove-echo
+
+git status
+
+
+
+
