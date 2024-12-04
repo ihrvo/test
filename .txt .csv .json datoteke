@@ -1,0 +1,109 @@
+<?php 
+// podaci (asocijativno polje/niz)
+$data = [
+    ['Name', 'Age', 'City'],
+    ['John Doe', 30, 'New York'],
+    ['Jane Smith', 25, 'Los Angeles']
+];
+
+// postavljanje putanje direktorija (koristimo _DIR_ za apsolutnu putanju do trenutnog direktorija)
+$dir = __DIR__ . '/ime_direktorija';
+
+// kreiranje direktorija
+if (!is_dir($dir)) {
+    mkdir($dir, 0777, true);  // ako direktorij ne postoji, kreira ga s dozvolama 0777
+}
+
+// putanje do datoteka
+$txtFile = $dir . '/file.txt';
+$csvFile = $dir . '/file.csv';
+$jsonFile = $dir . '/file.json';
+
+
+// TXT
+
+// čitanje cijele .txt datoteke
+if (!file_exists($txtFile)) {
+    exit("file.txt does not exist");  // ako datoteka ne postoji, izlazi iz skripte
+}
+$txtContent = file_get_contents($txtFile);  // učitava cijeli sadržaj u varijablu
+echo "Content of file.txt:\n$txtContent\n";
+
+
+// otvara datoteku u modu za dodavanje i čitanje
+$txtFileHandle = fopen($txtFile, 'a+');  
+if ($txtFileHandle === false) {
+    exit("Unable to open file for append and read");  // ako nije moguće otvoriti datoteku, izlazi iz skripte
+}
+
+// čitanje .txt datoteke redak po redak
+while (($txtRow = fgets($txtFileHandle)) !== false) {
+    echo "TXT Row: " . $txtRow . "\n";  // ispisuje svaki redak iz datoteke
+}
+
+// pisanje u .txt datoteku redak po redak
+foreach ($data as $row) {
+    fwrite($file, implode(", ", $row) . "\n");  // pretvara redak u string i zapisuje u datoteku
+}
+fclose($file);  // zatvaramo datoteku
+
+
+// CSV
+
+// ako csv datoteka ne postoji, izlazi iz skripte
+if (!file_exists($csvFile)) {
+    exit("file.csv does not exist");  
+}
+
+// čitanje .csv datoteke
+$csvFileHandle = fopen($csvFile, 'a+');  // otvara csv datoteku u modu za dodavanje i čitanje
+if ($csvFileHandle === false) {
+    exit("Unable to open file for append and read");  // ako nije moguće otvoriti datoteku, izlazi iz skripte
+}
+
+$csvHeader = fgetcsv($csvFileHandle);  // čita zaglavlje csv datoteke
+echo "CSV Header: " . implode(", ", $csvHeader) . "\n";  // ispisuje zaglavlje
+
+while (($csvRow = fgetcsv($csvFileHandle)) !== false) {  // čita svaki redak csv datoteke
+    echo "CSV Row: " . implode(", ", $csvRow) . "\n";  // pretvara elemente u string i ispisuje redak
+}
+
+// pisanje u .csv datoteku
+foreach ($data as $row) {
+    fputcsv($file, $row);  // zapisuje redak u csv datoteku
+}
+fclose($file);  // zatvara datoteku
+
+
+// JSON
+
+// ako json datoteka ne postoji, izlazi iz skripte
+if (file_exists($jsonFile)) {
+    exit("file.json does not exist");  
+}
+
+// čitanje i dekodiranje .json datoteke
+$jsonContent = file_get_contents($jsonFile);  // učitava cijeli sadržaj json datoteke
+if ($jsonContent === false) {
+    exit("Unable to open file for reading");  // ako nije moguće otvoriti datoteku, izlazi iz skripte
+}
+
+$jsonData = json_decode($jsonContent, true);  // dekodira json u asocijativno polje
+if ($jsonData === false) {
+    exit("Unable to decode file for reading");  // ako dođe do greške pri dekodiranju json-a, izlazi iz skripte
+}
+
+print_r($jsonData);  // ispisuje sadržaj dekodiranog json-a
+
+
+// enkodiranje i pisanje u .json datoteku
+$jsonData = json_encode($data, JSON_PRETTY_PRINT);  // pretvara podatke u json format, sa "pretty print" formatom
+if ($jsonData === false) {
+    exit("Unable to encode data for writing");  // ako dođe do greške pri enkodiranju, izlazi iz skripte
+}
+
+// dodavanje novih podataka u json datoteku
+if (file_put_contents($jsonFile, $jsonData, FILE_APPEND) === false) {  // zapisuje nove podatke na kraj json datoteke
+    exit("Unable to open file for writing");  // ako nije moguće zapisati podatke u datoteku, izlazi iz skripte
+}
+?>
