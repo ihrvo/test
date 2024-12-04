@@ -235,4 +235,7 @@ document.getElementById('submit-button').addEventListener('click', function () {
 });
 </script>
 
+12. 
+
+zip -r zadatak.zip zadatak -x "zadatak/vendor/*"
 
