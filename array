@@ -1,0 +1,31 @@
+Dodavanje elemenata:
+
+array_push($array, $value) – Dodaje jedan ili više elemenata na kraj arraya.
+$array[] = $value – Također dodaje element na kraj arraya.
+
+Uklanjanje elemenata:
+
+array_pop($array) – Uklanja zadnji element iz arraya i vraća ga.
+array_shift($array) – Uklanja prvi element arraya i vraća ga.
+unset($array[$key]) – Uklanja element na specifičnom ključu.
+
+Pretraživanje i sortiranje:
+
+array_search($needle, $array) – Traži element unutar arraya i vraća ključ prvog podudaranja.
+sort($array) – Sortira array u uzlaznom redoslijedu.
+rsort($array) – Sortira array u silaznom redoslijedu.
+
+Filtriranje i mapiranje:
+
+array_filter($array, $callback) – Filtrira elemente arraya koristeći callback funkciju.
+array_map($callback, $array) – Primjenjuje callback funkciju na svaki element arraya.
+
+Spajanje i rezanje:
+
+array_merge($array1, $array2) – Spaja dva ili više arraya.
+array_slice($array, $offset, $length) – Vraća dio arraya definiran početnim offsetom i duljinom.
+
+Brojanje i provjera veličine:
+
+count($array) – Vraća broj elemenata u arrayu.
+empty($array) – Provjerava je li array prazan.
