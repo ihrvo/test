@@ -1,0 +1,44 @@
+<?php
+
+class Book {
+    public string $title;
+    public string $author;
+    public int $isbn;
+    public bool $available;
+
+    public function __construct(string $title, string $author, int $isbn)
+    {
+        $this->title = $title;
+        $this->author = $author;
+        $this->isbn = $isbn;
+        $this->available = true;
+    }
+
+    public function borrow ():bool {
+        if($this->available === true) {
+            $this->available = false;
+            return true;
+        }
+        else return false;
+    }
+
+    public function returnBook():bool {
+        $this->available = true;
+        return $this->available;
+    }
+
+    public function getInfo () {
+        ($this->available) ? $dostupna = "Da" : $dostupna = "Ne"; 
+        $return = $this->title . ", " . $this->author . ", " . $this->isbn . ", Dostupna: " . $dostupna;
+        echo $return;
+
+    }
+}
+
+$knjiga = new Book("Vlak u snijegu", "Mato Lovrak", 12345);
+
+$knjiga->borrow();
+
+$knjiga->returnBook();
+
+$knjiga->getInfo();
