@@ -1,0 +1,20 @@
+1. potreban nam je pristup udaljenom serveru
+2. server mora ima instalirane web server (npr. Apache), neki DBMS, PHP, Composer, Node.js, zip...
+3. potrebno je prebaciti datoteke aplikacije u odgovarajući folder na serveru
+- npr sa git clone ili rsync...
+4. podesiti kofiguracijske datoteke (npr. na ubuntu serveru u sites_available te ju enable - "odobriti")
+5. provjeriti pristupe podatke za bazu (može se i kreirati baza, ali obično je laravel migrate sam stvori)
+6. napravimo .env datoteku u kojoj upišemo potrebne podatke (za bazu npr, APP_ENV=production)
+  cp .env.example .env
+  php artisan key:generate // za genereiranje 
+7. često su problemi sa permissionima te bi trebalo:
+  sudo chown -R $USER:www-data storage/ bootstrap/cache/
+  sudo chmod -R 775 storage/ bootstrap/cache/
+8. zatim pokrenemo naredbe:
+  composer install
+  php artisan migrate --seed // kreiramo bazu i tablice te ju ispunimo startnim podacima
+  php artisan storage:link // kreiramo link za public dir
+  npm install
+  npm run build
+
+Ako je sve prošlo bez problema, provjeriti da li stranica radi na domeni/ip adresi
