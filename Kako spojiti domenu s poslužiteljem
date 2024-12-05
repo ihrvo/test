@@ -1,1 +1,8 @@
 
+1. moramo imati registriranu domenu, naplatnu (npr .com) ili besplatnu (npr .hr)
+2. moramo imati hosting (prostor na serveru)
+3. u administraciji domene je potrebno dodati NS zapise (name server) hostinga
+4. čekamo propagaciju servera (unutar pola sata do 48 h)
+
+Najbitnije je usmjeriti DNS zapise na hosting. Ovisno kakav hosting ili server imamo potrebna su daljnja podešavanja. 
+Npr. na shared hostingu neće biti potrebno ništa posebno dok s druge strane ako imamo vlastiti server potrebni su daljnji koraci.
