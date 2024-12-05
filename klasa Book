@@ -4,14 +4,13 @@ class Book {
     public string $title;
     public string $author;
     public int $isbn;
-    public bool $available;
+    public bool $available = true;
 
     public function __construct(string $title, string $author, int $isbn)
     {
         $this->title = $title;
         $this->author = $author;
         $this->isbn = $isbn;
-        $this->available = true;
     }
 
     public function borrow ():bool {
@@ -19,7 +18,7 @@ class Book {
             $this->available = false;
             return true;
         }
-        else return false;
+        return false;
     }
 
     public function returnBook():bool {
@@ -37,8 +36,9 @@ class Book {
 
 $knjiga = new Book("Vlak u snijegu", "Mato Lovrak", 12345);
 
-$knjiga->borrow();
 
+$knjiga->borrow();
 $knjiga->returnBook();
 
 $knjiga->getInfo();
+
