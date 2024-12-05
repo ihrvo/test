@@ -1,0 +1,12 @@
+Laravel metode za dohvat podataka iz baze:
+
+Metoda - Opis - Vraća
+all()	- dohvaća sve zapise iz tablice -	kolekcija svih modela tablice
+get()	- dohvaća kolekciju zapisa s mogućim uvjetima	- kolekcija modela temeljenih na upitu nad tablicom
+first()	- dohvaća prvi zapis koji odgovara uvjetima	- jedan model ili null
+find() - dohvaća zapis po njegovom primarnom ključu (ID)	- jedan model ili null
+
+all() - kada želite dohvatiti sve zapise bez ikakvih uvjeta ili filtera
+get() - kada trebate dohvatiti kolekciju zapisa s određenim uvjetima (primjerice where)
+first() - kada vam treba prvi zapis koji odgovara određenim uvjetima (obično uz where)
+find() - kada imate primarni ključ (ID) i želite dohvatiti specifičan zapis (primjer find($id))
