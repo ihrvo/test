@@ -1,0 +1,6 @@
+Laravel $fillable i $guarded
+U Laravelu, $fillable i $guarded su dva svojstva koja služe za zaštitu modela od napada poznatog kao masovni unos (mass assignment). 
+Ova svojstva omogućuju kontrolu nad tim koji atributi modela mogu biti masovno dodani ili ažurirani, čime se povećava sigurnost aplikacije.
+
+Svojstvo $fillable omogućava developeru da eksplicitno navede koja polja (atributi) modela mogu biti masovno postavljena (npr. putem metode create() ili update()). 
+Svojstvo $guarded je suprotno od $fillable. Umjesto da se navode dopuštena polja, $guarded definira koja polja ne smiju biti masovno postavljena.
