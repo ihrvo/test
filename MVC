@@ -1,0 +1,6 @@
+Laravel MVC arhitektura
+Laravel koristi MVC arhitekturu za jasno odvajanje odgovornosti i bolju organizaciju koda, čineći razvoj aplikacija lakšim i održivijim.
+
+Model (M) - odgovoran za pohranu i manipulaciju podacima
+View (V) - odgovoran za prikaz podataka korisnicima putem HTML-a
+Controller (C) - odgovoran za logiku aplikacije, povezuje modele i prikaze
