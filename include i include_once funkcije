@@ -1,4 +1,0 @@
-Koriste se za ubacivanje sadržaja jedne datoteke u drugu tijekom izvođenja skripte.
-Razlika je u tome kako se one ponašaju kada se ista datoteka pokušava uključiti više puta:
-- Kada se koristi include, PHP će uključiti i izvršiti navedenu datoteku svaki put kada naiđe na include izraz
-- Ako je datoteka već bila uključena, PHP neće ponovno učitavati datoteku
