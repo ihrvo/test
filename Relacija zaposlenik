@@ -1,0 +1,25 @@
+1. Veze između entiteta
+Zaposlenik i Posao: Navodite da je veza između Zaposlenik i Posao 1:N, što sugerira da jedan zaposlenik može obavljati više poslova, ali svaki posao pripada samo jednom zaposleniku. 
+To je malo neobično za opći slučaj, jer obično više zaposlenika može raditi na različitim poslovima.
+Izvršenja, Zaposlenik i Posao: Navodite da je veza između izvršenja i zaposlenika, te izvršenja i posla N:M. 
+Međutim, stvaranje zasebne tablice izvrsenja_table s stranim ključevima id_zaposlenik i id_posao te atributom status upućuje na to da 
+svaki zapis u tablici izvrsenja predstavlja jedinstvenu instancu izvršenja posla od strane zaposlenika, što zapravo predstavlja realizaciju M:N veze između Zaposlenik i Posao preko tablice Izvršenje.
+Ispravne veze i model:
+Zaposlenik - Posao: Veza bi trebala biti M:N jer više zaposlenika može raditi na više poslova.
+Izvršenje: Služi kao poveznica u M:N vezi, gdje svaki redak predstavlja jedno izvršenje određenog posla od strane određenog zaposlenika. Ovo pravilno modelira M:N vezu preko asocijacijske tablice.
+
+zaposlenici_table
+id (PK)
+ime
+
+poslovi_table
+id (PK)
+naziv
+
+poslovi_zaposlenici_table (Pivot)
+id (PK)
+id_zaposlenik (FK na zaposlenici_table.id)
+id_posao (FK na poslovi_table.id)
+status (Boolean, označava je li posao izvršen)
+
+U ovoj strukturi, izvrsenja_table efektivno omogućuje višestruke zaposlenike da rade na višestrukim poslovima, a svaki zapis u izvrsenja_table odnosi se na specifičan posao koji određeni zaposlenik izvršava.
