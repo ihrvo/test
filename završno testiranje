@@ -1,0 +1,8 @@
+npr. Laravel projekt
+
+1. definiramo ciljeve testiranja - definiramo što želimo postići testiranjem i testne slučajeve
+2. definiramo testiranja - funkcionalno pomoću npr. Laravel Dusk, sigurnosno da provjerimo ranjivosti aplikacije, testiranje performansi na većim opterećenjima... itd.
+2. automatiziramo testiranje sa npr. PHPUnit u Laravelu
+4. zatim beta testing s krajnjim korisnicima tzv. (UAT) User Acceptance Testing
+5. rješavanje bugova i problema te novo testiranje
+6. kada je sve spremno puštanje u produkciju
