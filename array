@@ -1,3 +1,23 @@
+INDEKSNI
+
+$voce = array("Jabuka", "Banana", "Naranča");
+
+echo $voce[0]; // Ispisuje "Jabuka"
+echo $voce[1]; // Ispisuje "Banana"
+echo $voce[2]; // Ispisuje "Naranča"
+
+ASOCIJATIVNI
+
+$osoba = array(
+    "ime" => "Ivan",
+    "prezime" => "Horvat",
+    "dob" => 30
+);
+
+echo $osoba["ime"]; // Ispisuje "Ivan"
+echo $osoba["prezime"]; // Ispisuje "Horvat"
+echo $osoba["dob"]; // Ispisuje 30
+
 Dodavanje elemenata:
 
 array_push($array, $value) – Dodaje jedan ili više elemenata na kraj arraya.
