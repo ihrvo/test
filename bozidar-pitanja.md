@@ -7,6 +7,7 @@ može li se u istoj php datoteci definirati više imenskih prostora?
 `
 može
  `
+ 
 metoda za pripremu sql upita u pdo?
  
 što je objekt u php-u?
