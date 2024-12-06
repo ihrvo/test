@@ -23,6 +23,12 @@ naredba za novog usera u SQL bazi
 - CREATE USER 'novi_korisnik'@'localhost' IDENTIFIED BY 'lozinka';
  
 kako se briše kolačić u php
+
+-- // postavljanje (sa trajanjem 1 sat)
+-- setcookie("user", "JohnDoe", time() + 3600, "/");
+
+-- // brisanje (ista naredba uz postavljanje vremena isteka u prošlost)
+-- setcookie("user", "", time() - 3600, "/");
  
 koja je ispravna sintaksa za pokretanje php skripte
  
