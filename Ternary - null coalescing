@@ -1,0 +1,15 @@
+TERNARY
+
+$variable = (condition) ? value_if_true : value_if_false;
+
+$age = 20;
+$is_adult = ($age >= 18) ? 'Da' : 'Ne';
+echo $is_adult;  // Ispisat će 'Da' jer je uvjet istinit.
+
+NULL COALESCING
+
+$a = null;
+$b = 'default value';
+$result = $a ?? $b;
+echo $result; // Outputs: 'default value'
+
