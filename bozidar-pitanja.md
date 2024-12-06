@@ -7,7 +7,9 @@ može li se u istoj php datoteci definirati više imenskih prostora?
 `
 može
  `
- 
+Svrha funkcije spl_autoload_register u PHP-u?
+`Registrirati funkciju koja se automatski poziva kada je klasa nedefinirana.`
+
 metoda za pripremu sql upita u pdo?
  
 što je objekt u php-u?
@@ -23,15 +25,18 @@ koji zapis kardinalnosti znači jedan i samo jedan? 1:1
  
 naredba za novog usera u SQL bazi
 - CREATE USER 'novi_korisnik'@'localhost' IDENTIFIED BY 'lozinka';
+
+Koja metoda se koristi za dohvaćanje jednog zapisa iz tablice prema primarnom ključu?
+`$user = DB::table('users')->find(1);`
  
 kako se briše kolačić u php
+```
+// postavljanje (sa trajanjem 1 sat)
+setcookie("user", "JohnDoe", time() + 3600, "/");
 
--- // postavljanje (sa trajanjem 1 sat)
--- setcookie("user", "JohnDoe", time() + 3600, "/");
-
--- // brisanje (ista naredba uz postavljanje vremena isteka u prošlost)
--- setcookie("user", "", time() - 3600, "/");
- 
+// brisanje (ista naredba uz postavljanje vremena isteka u prošlost)
+setcookie("user", "", time() - 3600, "/");
+```
 koja je ispravna sintaksa za pokretanje php skripte
  
 koja je svrha kontrole verzija u razvoju softvera?
