@@ -1,12 +1,12 @@
-# koje su dvije najčeće web forme koje se koriste za slanje podataka iz web forme na server, navedite ih i objasnite razliku
+### koje su dvije najčeće web forme koje se koriste za slanje podataka iz web forme na server, navedite ih i objasnite razliku
  
 koja je svrha $fillable svojstva u Laravel modelu?
 - 
  
 može li se u istoj php datoteci definirati više imenskih prostora?
-```
+`
 može
- ```
+ `
 metoda za pripremu sql upita u pdo?
  
 što je objekt u php-u?
