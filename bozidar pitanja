@@ -1,10 +1,12 @@
 koje su dvije najčeće web forme koje se koriste za slanje podataka iz web forme na server, navedite ih i objasnite razliku
  
 koja je svrha $fillable svojstva u Laravel modelu?
+- 
  
 može li se u istoj php datoteci definirati više imenskih prostora?
+- može
  
-metoda za pripremu sql upita u pdo?$_COOKIE
+metoda za pripremu sql upita u pdo?
  
 što je objekt u php-u?
 skup podataka i metoda ili tip podataka;
@@ -18,6 +20,7 @@ ograničenje foreign key osigurava referentni integritet između dvije tablice? 
 koji zapis kardinalnosti znači jedan i samo jedan? 1:1
  
 naredba za novog usera u SQL bazi
+- CREATE USER 'novi_korisnik'@'localhost' IDENTIFIED BY 'lozinka';
  
 kako se briše kolačić u php
  
