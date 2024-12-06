@@ -126,6 +126,16 @@ Uvezemo bazu: U phpMyAdmin-u odaberemo bazu i uvezemo .sql datoteku putem "Impor
 Ažuriramo vezu na bazu u postavkama aplikacije (tj u kodu gdje imamo podatke za spajanje)
 Testirano da li veza radi.
 
+23. Kako petlje ubrzavaju procese?
+programske petlje su strukture koje omogućavaju da se dijelovi programa/koda izvrše, odnosno iteriraju više puta (zadani broj ili sve dok je određeni uvjet ispunjen)
+te na taj način ubrzavaju/automatiziraju obradu podataka (izbjegavamo repetitivno ponavljanje koda), 
+posebno su korisne kada treba obaviti akciju nad nizom elemenata (primjerice prilikom pretraživanja lista, polja i slično).
+
+24. Šta od navedenog nije vrsta podataka?
+Objekt
+Array
+* Funkcija
+
 ZADACI
 1. metoda za pripremu sql upita u pdo?
 2. SQL transakcija
