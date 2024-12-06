@@ -1,0 +1,3 @@
+wsl --install
+wsl --list --online
+wsl --install <Distro>
