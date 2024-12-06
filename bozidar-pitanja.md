@@ -1,4 +1,11 @@
 koje su dvije najčeće web forme koje se koriste za slanje podataka iz web forme na server, navedite ih i objasnite razliku
+`
+Dvije najčešće web forme koje se koriste za slanje podataka iz web forme na server su GET i POST metode. Obje metode su dio HTML form elementa, ali se razlikuju u načinu na koji šalju podatke i u njihovim prednostima i nedostacima.
+
+GET metoda šalje podatke putem URL-a što znači da su podaci uključeni u URL adresu kada se forma pošalje te stoga nije siguran za slanje osjetljivih podataka (kao što su lozinke i brojevi kreditnih kartica), postoji ograničenje u veličini podataka koji se mogu poslati, jer URL ima ograničenje duljine (obično oko 2000 znakova).
+
+POST metoda šalje podatke unutar tijela HTTP zahtjeva, znači da podaci nisu vidljivi u URL-u, već su u tijelu zahtjeva, što čini POST sigurnijim za slanje osjetljivih informacija (ali podaci još uvijek mogu biti uhvaćeni ako se ne koristi HTTPS), pritom nema značajnijih ograničenja u veliniči podataka koji se mogu poslati (osim onih postavljenih od strane servera).
+`
  
 koja je svrha $fillable svojstva u Laravel modelu?
  
