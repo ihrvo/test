@@ -1,4 +1,4 @@
-koje su dvije najčeće web forme koje se koriste za slanje podataka iz web forme na server, navedite ih i objasnite razliku
+# koje su dvije najčeće web forme koje se koriste za slanje podataka iz web forme na server, navedite ih i objasnite razliku
 ```
 Dvije najčešće web forme koje se koriste za slanje podataka iz web forme na server su GET i POST metode.
 Obje metode su dio HTML form elementa, ali se razlikuju u načinu na koji šalju podatke i u njihovim prednostima i nedostacima.
