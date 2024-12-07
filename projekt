@@ -20,9 +20,27 @@ php artisan migrate --seed
 -- napravimo metodu getAnimal u AnimalControlleru
 
 public function getAnimal ($name) {
-        
-    }
+        $animal = Animal::where('naziv', $name)->first();
 
+        if (!$animal) {
+            return response()->json(['message' => 'Nema takve životinje'], 404);
+        }
+
+        return response()->json($animal);
+    }
+-- napravimo store metodu
+public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'naziv' => 'required|string|max:255'
+        ]);
+
+        $animal = Animal::create($validated);
+
+        return response()->json(['message' => 'Nova životinja spremljena', 'animal' => $animal], 201);
+    }
+-- moramo dodati naziv u fillable u animal modelu
+protected $fillable = ['naziv'];
 3. Stavite rute u middleware grupu “auth:admin”"
 -- na vrh
 use App\Http\Controllers\AnimalController;
@@ -74,6 +92,35 @@ use App\Http\Middleware\ProvjeriToken;
             'auth.admin' => ProvjeriToken::class
         ]);
     })
+-- u middleware
+public function handle(Request $request, Closure $next): Response
+    {
+        $token = $request->header('X-Authorization');
+                if ($token !== 'TestValue') {
+                    return redirect('/');
+                }
+        return $next($request);
+    }
+-- također kreiramo middleware koji dodaje test header na sve zahtjeve
+php artisan make:middleware DodajTestHeader
+-- u middleware
+public function handle(Request $request, Closure $next): Response
+    {
+        if (!$request->hasHeader('X-Authorization')) {
+            $request->headers->set('X-Authorization', 'TestValue');
+        }
+        return $next($request);
+    }
+-- u welcome blade za testiranje dodamo formu
+<p>Dodaj životinju:</p>
+            <form action="/animal" method="POST" id="animal-form">
+                @csrf
+                <label for="naziv">Životinja</label>
+                <input type="text" name="naziv" />
+                <input type="submit" value="Pošalji" id="submit-button">
+            </form>
+<script>
+
 8. Provjera pristupa se radi tako da se u Headeru zahtjeva mora poslati proizvoljan token.
 
 9. Ako korisnik nije autentificiran, middleware treba preusmjeriti korisnika na početnu
