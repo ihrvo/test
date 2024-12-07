@@ -1,0 +1,71 @@
+1. Instalirajte novi Laravel projekt koristeći Composer
+Ako nemate instaliran Composer, instalirajte ga pomoću sljedeće poveznice
+https://getcomposer.org/download/
+laravel new projekt
+podesiti .env
+
+2. Definirajte GET rutu za dohvat životinje prema nazivu te POST rutu za spremanje nove
+životinje.
+-- kreiramo model Animal sa factorijem, controllerom i seederom
+php artisan make:model
+
+-- napravimo metodu getAnimal u AnimalControlleru
+
+public function getAnimal ($name) {
+        
+    }
+
+3. Stavite rute u middleware grupu “auth:admin”"
+Route::middleware(['auth.admin'])->group(
+    function () {
+        Route::get('/animal/{name}', [AnimalController::class, 'getAnimal']);
+        Route::post('/animal', [AnimalController::class, 'store']);
+    }
+);
+
+4. Kreirajte i definirajte resursni kontroler za automobile. Kreirajte kontroler koji definira sve
+rute koje dolaze s resursnim kontrolerom.
+
+php artisan make:controller --resource CarController
+
+5. Unutar store metode postojećeg kontrolera napišite funkciju koja obrađuje POST HTTP
+zahtjev.
+6. Funkcija treba prihvatiti zahtjev koji sadrži polje za “naziv”. Provjerite jesu li sva polja
+ispunjena i vratite odgovarajuću poruku u JSON formatu. Ako su sva polja ispunjena,
+vratite statusni kod 200 i poruku ""Zahtjev uspješan"". Ako bilo koje polje nedostaje,
+vratite statusni kod 400 i poruku ""Nedostaju podaci""."
+
+public function store(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'naziv' => 'required|string|30'
+            ]);
+
+            return response()->json([
+                'message' => "Zahtjev uspješan"
+            ], 200);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => "Nedostaju podaci"
+            ], 400);
+        }
+    }
+    
+7. Kreirajte middleware u Laravelu koji provjerava je li korisnik autentificiran prije pristupa
+proizvoljnoj ruti.
+php artisan make:middleware ProvjeriToken
+-- dajmo mu alias u /bootstrap/app.php
+->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'auth.admin' => ProvjeriToken::class
+        ]);
+    })
+8. Provjera pristupa se radi tako da se u Headeru zahtjeva mora poslati proizvoljan token.
+9. Ako korisnik nije autentificiran, middleware treba preusmjeriti korisnika na početnu
+stranicu.
+10. Nakon toga, primijenite ovaj middleware na grupu ruta koje trebaju biti dostupne samo
+autentificiranim korisnicima.
+11. Kreirajte feature test koji provjerava da se za proizvoljnu rutu kontrolera dobije 200
+(primjer za rutu [GET] /animals). U sklopu testa treba napraviti User factory koji će
+kreirati korisnika koji će napraviti zahtjev.
