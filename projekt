@@ -24,6 +24,9 @@ public function getAnimal ($name) {
     }
 
 3. Stavite rute u middleware grupu “auth:admin”"
+-- na vrh
+use App\Http\Controllers\AnimalController;
+
 Route::middleware(['auth.admin'])->group(
     function () {
         Route::get('/animal/{name}', [AnimalController::class, 'getAnimal']);
