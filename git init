@@ -1,0 +1,7 @@
+git init
+git add .
+git commit .m "commit"
+git branch -m main
+git remote add origin https://ihrvo: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@github.com/ihrvo/kavacake.git
+git pull origin main -r // merge sa udaljenog repoa
+git push -u origin main
