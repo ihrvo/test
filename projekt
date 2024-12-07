@@ -8,7 +8,15 @@ podesiti .env
 životinje.
 -- kreiramo model Animal sa factorijem, controllerom i seederom
 php artisan make:model
-
+-- napravimo migraciju
+php artisan make:migration create_animals_table
+Schema::create('animals', function (Blueprint $table) {
+            $table->id();
+            $table->string('naziv');
+            $table->timestamps();
+        });
+-- pokrenemo migracije
+php artisan migrate --seed
 -- napravimo metodu getAnimal u AnimalControlleru
 
 public function getAnimal ($name) {
@@ -56,12 +64,15 @@ public function store(Request $request)
 proizvoljnoj ruti.
 php artisan make:middleware ProvjeriToken
 -- dajmo mu alias u /bootstrap/app.php
+-- obavezno dodati na vrh
+use App\Http\Middleware\ProvjeriToken;
 ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'auth.admin' => ProvjeriToken::class
         ]);
     })
 8. Provjera pristupa se radi tako da se u Headeru zahtjeva mora poslati proizvoljan token.
+
 9. Ako korisnik nije autentificiran, middleware treba preusmjeriti korisnika na početnu
 stranicu.
 10. Nakon toga, primijenite ovaj middleware na grupu ruta koje trebaju biti dostupne samo
