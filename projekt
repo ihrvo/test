@@ -174,4 +174,4 @@ class RouteTest extends TestCase
 
 php artisan test --filter=RouteTest
 
-zip -r projekt.zip zadatak -x "projekt/vendor/*"
+zip -r projekt.zip projekt -x "projekt/vendor/*"
