@@ -42,13 +42,26 @@ public function store(Request $request)
 -- moramo dodati naziv u fillable u animal modelu
 protected $fillable = ['naziv'];
 3. Stavite rute u middleware grupu “auth:admin”"
--- na vrh
+
+<?php
+
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\CarController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 Route::middleware(['auth.admin'])->group(
     function () {
         Route::get('/animal/{name}', [AnimalController::class, 'getAnimal']);
         Route::post('/animal', [AnimalController::class, 'store']);
+        Route::resource('/cars', CarController::class);
+        Route::get('/admin/dashboard', function () {
+            return 'Dobrodošli na admin dashboard!';
+        });
     }
 );
 
@@ -130,3 +143,35 @@ autentificiranim korisnicima.
 11. Kreirajte feature test koji provjerava da se za proizvoljnu rutu kontrolera dobije 200
 (primjer za rutu [GET] /animals). U sklopu testa treba napraviti User factory koji će
 kreirati korisnika koji će napraviti zahtjev.
+
+php artisan make:test RouteTest
+
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+use App\Models\User;
+
+class RouteTest extends TestCase
+{
+     /**
+     * A basic feature test example.
+     */
+    public function test_example(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->withHeaders([
+            'X-Authorization' => 'TestValue',
+        ])->get('/animal/pas');
+
+        $response->assertStatus(200);
+    }
+}
+-- testiranje (mora postojati pas u bazi da bi vratilo 200)
+
+php artisan test --filter=RouteTest
+
+zip -r projekt.zip zadatak -x "projekt/vendor/*"
